@@ -20,10 +20,9 @@ axios.interceptors.response.use(async response => {
     switch (status) {
         case 400:
             console.log("in 0")
-            if (config.method === 'get' && Object.prototype.hasOwnProperty.call(data.errors, 'id')) {
-                console.log("in 1")
+            if (config.method === 'get' && data.errors && Object.prototype.hasOwnProperty.call(data.errors, 'id')) {
                 router.navigate('/not-found');
-            }
+      }
             if (data.errors) {
                 const modalStateErrors = [];
                 for (const key in data.errors) {
