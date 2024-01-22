@@ -15,6 +15,10 @@ export default class UserStore {
         return !!this.user;
     }
 
+    setDisplayName = (name: string) => {
+        if (this.user) this.user.displayName = name;
+    }
+
     login = async (creds: UserFormValues) => {
         const user = await agent.Account.login(creds);
         store.commonStore.setToken(user.token)
