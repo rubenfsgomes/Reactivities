@@ -9,6 +9,11 @@ interface Props {
 }
 
 export default observer(function ActivityListItemAttendee({attendees} : Props) {
+    const styles = {
+        borderColor: 'orange',
+        borderWidth: 3
+    }
+
     return (
         <List horizontal>
             {attendees.map(at => (
@@ -17,7 +22,13 @@ export default observer(function ActivityListItemAttendee({attendees} : Props) {
                     key={at.username}
                     trigger={
                         <List.Item key={at.username} as={Link} to={`/profiles/${at.username}`}>
-                            <Image size="mini" circular src={at.image || "/assets/user.png"} />
+                            <Image 
+                                size="mini" 
+                                circular 
+                                src={at.image || "/assets/user.png"} 
+                                bordered
+                                style={at.following ? styles : null}
+                            />
                         </List.Item>
                     }
                 >

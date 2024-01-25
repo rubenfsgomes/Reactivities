@@ -177,4 +177,15 @@ export default class ActivityStore {
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
     }
+
+    updateAttendeeFollowing = (username: string) => {
+        this.activityRegistry.forEach(act => {
+            act.attendees.forEach(at => {
+                if (at.username === username) {
+                    at.following ? at.followersCount-- : at.followersCount++;
+                    at.following = !at.following;
+                }
+            })
+        })
+    }
 }
